@@ -14,5 +14,5 @@ RUN dotnet publish -c Release -o out
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-COPY --from=build /app/out .
-ENTRYPOINT ["dotnet", "MyBankApp.csproj"]
+COPY --from=build /app/out EXPOSE.
+ENTRYPOINT ["dotnet", "MyBankApp.dll","--urls","http://0.0.0.0:10000"]
